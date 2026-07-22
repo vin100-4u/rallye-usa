@@ -21,7 +21,7 @@ jobs:
           import os, json, urllib.request, datetime
 
           flights = {
-              '2026-07-22': {'no': 1, 'state': 'Arizona', 'dep': 'KSEZ (Sedona)', 'poi1': 'Grand Canyon', 'poi2': 'Meteor Crater', 'arr': 'KINW (Winslow)'},
+              '2026-08-01': {'no': 1, 'state': 'Arizona', 'dep': 'KSEZ (Sedona)', 'poi1': 'Grand Canyon', 'poi2': 'Meteor Crater', 'arr': 'KINW (Winslow)'},
               '2026-08-03': {'no': 2, 'state': 'Utah', 'dep': 'KSLC (Salt Lake)', 'poi1': 'Bryce Canyon', 'poi2': 'Monument Valley', 'arr': 'KBIC (Big Water)'},
               '2026-08-05': {'no': 3, 'state': 'Californie', 'dep': 'KTRK (Truckee)', 'poi1': 'Lac Tahoe', 'poi2': 'Vallée de Yosemite', 'arr': 'KMMH (Mammoth Lakes)'},
               '2026-08-08': {'no': 4, 'state': 'Wyoming', 'dep': 'KCOD (Cody)', 'poi1': 'Yellowstone (Old Faithful)', 'poi2': 'Grand Teton', 'arr': 'JAC (Jackson Hole)'},
