@@ -1,0 +1,63 @@
+name: Rallye USA Discord Auto-Update
+
+on:
+  schedule:
+    # S'exécute entre 6h et 9h UTC (8h et 11h heure française)
+    - cron: '0 6-9 * * *'
+  workflow_dispatch: # Permet un déclenchement manuel si besoin
+
+jobs:
+  update-discord:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Execute update script
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          python3 -c "
+          import os, json, urllib.request, datetime
+
+          flights = {
+              '2026-08-01': {'no': 1, 'state': 'Arizona', 'dep': 'KSEZ (Sedona)', 'poi1': 'Grand Canyon', 'poi2': 'Meteor Crater', 'arr': 'KINW (Winslow)'},
+              '2026-08-03': {'no': 2, 'state': 'Utah', 'dep': 'KSLC (Salt Lake)', 'poi1': 'Bryce Canyon', 'poi2': 'Monument Valley', 'arr': 'KBIC (Big Water)'},
+              '2026-08-05': {'no': 3, 'state': 'Californie', 'dep': 'KTRK (Truckee)', 'poi1': 'Lac Tahoe', 'poi2': 'Vallée de Yosemite', 'arr': 'KMMH (Mammoth Lakes)'},
+              '2026-08-08': {'no': 4, 'state': 'Wyoming', 'dep': 'KCOD (Cody)', 'poi1': 'Yellowstone (Old Faithful)', 'poi2': 'Grand Teton', 'arr': 'JAC (Jackson Hole)'},
+              '2026-08-10': {'no': 5, 'state': 'South Dakota', 'dep': 'KRAP (Rapid City)', 'poi1': 'Mont Rushmore', 'poi2': 'Parc national des Badlands', 'arr': 'KHEI (Hettinger)'},
+              '2026-08-13': {'no': 6, 'state': 'Washington', 'dep': 'KCLM (Port Angeles)', 'poi1': 'Mont Rainier', 'poi2': 'Mont St. Helens', 'arr': 'KYKM (Yakima)'},
+              '2026-08-15': {'no': 7, 'state': 'Nevada', 'dep': 'KLAS (Las Vegas)', 'poi1': 'Barrage Hoover', 'poi2': 'Valley of Fire', 'arr': 'KTPH (Tonopah)'},
+              '2026-08-17': {'no': 8, 'state': 'Colorado', 'dep': 'KASE (Aspen)', 'poi1': 'Pikes Peak', 'poi2': 'Royal Gorge Bridge', 'arr': 'KCOS (Colorado Springs)'},
+              '2026-08-19': {'no': 9, 'state': 'Alaska', 'dep': 'PANC (Anchorage)', 'poi1': 'Mont Denali', 'poi2': 'Glacier Knik', 'arr': 'PAWD (Girdwood)'},
+              '2026-08-21': {'no': 10, 'state': 'Hawaï', 'dep': 'PHOG (Maui)', 'poi1': 'Cratère Haleakala', 'poi2': 'Diamond Head (Oahu)', 'arr': 'PHNL (Honolulu)'}
+          }
+
+          today = datetime.datetime.utcnow().strftime('%Y-%m-%d')
+          webhook_url = os.environ.get('DISCORD_WEBHOOK')
+
+          if today in flights:
+              f = flights[today]
+              
+              content = {
+                  'embeds': [{
+                      'title': f'🏜️ RALLYE USA - Vol n°{f[\"no\"]}/10 : {f[\"state\"]}',
+                      'description': '📍 **A L\'OUEST, RIEN DE NOUVEAU**\nVoici la nouvelle étape disponible !',
+                      'color': 15105570,
+                      'fields': [
+                          {'name': '🛫 Départ', 'value': f['dep'], 'inline': True},
+                          {'name': '🛬 Arrivée', 'value': f['arr'], 'inline': True},
+                          {'name': '👀 POI 1 à survoler', 'value': f['poi1'], 'inline': False},
+                          {'name': '👀 POI 2 à survoler', 'value': f['poi2'], 'inline': False},
+                          {'name': '✈️ Appareils conseillés', 'value': 'Monomoteurs de tourisme (C172, Bonanza, Cirrus, etc.)', 'inline': False}
+                      ],
+                      'footer': {'text': 'Microsoft Flight Simulator 2020 & 2024 • Prochain vol à venir'}
+                  }]
+              }
+
+              req = urllib.request.Request(webhook_url, data=json.dumps(content).encode('utf-8'), headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'})
+              urllib.request.urlopen(req)
+              print(f'Vol {f[\"no\"]} publié avec succès !')
+          else:
+              print('Pas de nouveau vol prévu pour aujourd\'hui.')
+          "
