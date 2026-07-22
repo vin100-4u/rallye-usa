@@ -2,8 +2,8 @@ name: Rallye USA Discord Auto-Update
 
 on:
   schedule:
-    # S'exécute entre 6h et 9h UTC (8h et 11h heure française)
-   - cron: '0 4-6 * * *'
+    # S'exécute entre 4h et 6h UTC (6h et 8h heure française)
+    - cron: '0 4-6 * * *'
   workflow_dispatch: # Permet un déclenchement manuel si besoin
 
 jobs:
@@ -38,7 +38,6 @@ jobs:
 
           if today in flights:
               f = flights[today]
-              
               content = {
                   'embeds': [{
                       'title': f'🏜️ RALLYE USA - Vol n°{f[\"no\"]}/10 : {f[\"state\"]}',
@@ -54,10 +53,23 @@ jobs:
                       'footer': {'text': 'Microsoft Flight Simulator 2020 & 2024 • Prochain vol à venir'}
                   }]
               }
-
               req = urllib.request.Request(webhook_url, data=json.dumps(content).encode('utf-8'), headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'})
               urllib.request.urlopen(req)
               print(f'Vol {f[\"no\"]} publié avec succès !')
+
+          elif '2026-07-24' <= today < '2026-08-01':
+              content = {
+                  'embeds': [{
+                      'title': '🏜️ RALLYE USA - A L\'OUEST, RIEN DE NOUVEAU',
+                      'description': '☕ **Pas de vol prévu aujourd\'hui.**\nLe lancement officiel du rallye aura lieu le **1er Août** ! Préparez vos appareils...',
+                      'color': 3447003,
+                      'footer': {'text': 'Microsoft Flight Simulator 2020 & 2024'}
+                  }]
+              }
+              req = urllib.request.Request(webhook_url, data=json.dumps(content).encode('utf-8'), headers={'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0'})
+              urllib.request.urlopen(req)
+              print('Message d\'attente publié sur Discord !')
+
           else:
-              print('Pas de nouveau vol prévu pour aujourd\'hui.')
+              print('Pas de message à envoyer aujourd\'hui.')
           "
