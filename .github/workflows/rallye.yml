@@ -1,9 +1,9 @@
 name: Rallye USA Discord Auto-Update
 
 on:
-  schedule:
-    # S'exécute entre 4h et 6h UTC (6h et 8h heure française)
-    - cron: '0 4-6 * * *'
+ schedule:
+    # 4h00 UTC = 6h00 pile en France
+    - cron: '0 4 * * *'
   workflow_dispatch: # Permet un déclenchement manuel si besoin
 
 jobs:
