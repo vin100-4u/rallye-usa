@@ -21,7 +21,7 @@ jobs:
           import os, json, urllib.request, datetime
 
           flights = {
-              '2026-07-23': {'no': 1, 'state': 'Arizona', 'dep': 'KSEZ (Sedona)', 'poi1': 'Grand Canyon', 'poi2': 'Meteor Crater', 'arr': 'KINW (Winslow)'},
+              '2026-08-01': {'no': 1, 'state': 'Arizona', 'dep': 'KSEZ (Sedona)', 'poi1': 'Grand Canyon', 'poi2': 'Meteor Crater', 'arr': 'KINW (Winslow)'},
               '2026-08-03': {'no': 2, 'state': 'Utah', 'dep': 'KSLC (Salt Lake)', 'poi1': 'Bryce Canyon', 'poi2': 'Monument Valley', 'arr': 'KBIC (Big Water)'},
               '2026-08-05': {'no': 3, 'state': 'Californie', 'dep': 'KTRK (Truckee)', 'poi1': 'Lac Tahoe', 'poi2': 'Vallée de Yosemite', 'arr': 'KMMH (Mammoth Lakes)'},
               '2026-08-08': {'no': 4, 'state': 'Wyoming', 'dep': 'KCOD (Cody)', 'poi1': 'Yellowstone (Old Faithful)', 'poi2': 'Grand Teton', 'arr': 'JAC (Jackson Hole)'},
@@ -33,7 +33,9 @@ jobs:
               '2026-08-21': {'no': 10, 'state': 'Hawaï', 'dep': 'PHOG (Maui)', 'poi1': 'Cratère Haleakala', 'poi2': 'Diamond Head (Oahu)', 'arr': 'PHNL (Honolulu)'}
           }
 
-          today = datetime.datetime.utcnow().strftime('%Y-%m-%d')
+          # Calcul de l'heure française (UTC + 2 heures en été)
+          now_france = datetime.datetime.utcnow() + datetime.timedelta(hours=2)
+          today = now_france.strftime('%Y-%m-%d')
           webhook_url = os.environ.get('DISCORD_WEBHOOK')
 
           if today in flights:
@@ -57,7 +59,7 @@ jobs:
               urllib.request.urlopen(req)
               print(f'Vol {f[\"no\"]} publié avec succès !')
 
-          elif '2026-07-24' <= today < '2026-08-01':
+          elif '2026-07-23' <= today < '2026-08-01':
               content = {
                   'embeds': [{
                       'title': '🏜️ RALLYE USA - A L\'OUEST, RIEN DE NOUVEAU',
