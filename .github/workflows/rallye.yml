@@ -4,7 +4,7 @@ on:
  schedule:
     # 4h00 UTC = 6h00 pile en France
     - cron: '0 4 * * *'
-  workflow_dispatch: # Permet un déclenchement manuel si besoin
+workflow_dispatch: # Permet un déclenchement manuel si besoin
 
 jobs:
   update-discord:
