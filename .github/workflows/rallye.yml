@@ -1,17 +1,16 @@
 name: Rallye USA Discord Auto-Update
 
 on:
- schedule:
-    # 4h00 UTC = 6h00 pile en France
+  schedule:
     - cron: '0 4 * * *'
-workflow_dispatch: # Permet un déclenchement manuel si besoin
+  workflow_dispatch:
 
 jobs:
-  update-discord:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Execute update script
         env:
