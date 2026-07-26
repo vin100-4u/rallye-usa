@@ -1,8 +1,7 @@
 name: Rallye USA Discord Auto-Update
 
 on:
-  schedule:
-    - cron: '0 4 * * *'
+  
   workflow_dispatch:
 
 jobs:
