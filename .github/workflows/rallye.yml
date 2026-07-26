@@ -1,7 +1,6 @@
 name: Rallye USA Discord Auto-Update
 
 on:
-  
   workflow_dispatch:
 
 jobs:
