@@ -21,12 +21,12 @@ jobs:
               '2026-08-01': {'no': 1, 'state': 'Arizona', 'dep': 'KSEZ (Sedona)', 'poi1': 'Grand Canyon', 'poi2': 'Meteor Crater', 'arr': 'KINW (Winslow)'},
               '2026-08-03': {'no': 2, 'state': 'Utah', 'dep': 'KSLC (Salt Lake)', 'poi1': 'Bryce Canyon', 'poi2': 'Monument Valley', 'arr': 'KBIC (Big Water)'},
               '2026-08-05': {'no': 3, 'state': 'Californie', 'dep': 'KTRK (Truckee)', 'poi1': 'Lac Tahoe', 'poi2': 'Vallée de Yosemite', 'arr': 'KMMH (Mammoth Lakes)'},
-              '2026-08-08': {'no': 4, 'state': 'Wyoming', 'dep': 'KCOD (Cody)', 'poi1': 'Yellowstone (Old Faithful)', 'poi2': 'Grand Teton', 'arr': 'JAC (Jackson Hole)'},
+              '2026-08-08': {'no': 4, 'state': 'Wyoming', 'dep': 'KCOD (Cody)', 'poi1': 'Yellowstone (Old Faithful)', 'poi2': 'Grand Teton', 'arr': 'KJAC (Jackson Hole)'},
               '2026-08-10': {'no': 5, 'state': 'South Dakota', 'dep': 'KRAP (Rapid City)', 'poi1': 'Mont Rushmore', 'poi2': 'Parc national des Badlands', 'arr': 'KHEI (Hettinger)'},
               '2026-08-13': {'no': 6, 'state': 'Washington', 'dep': 'KCLM (Port Angeles)', 'poi1': 'Mont Rainier', 'poi2': 'Mont St. Helens', 'arr': 'KYKM (Yakima)'},
               '2026-08-15': {'no': 7, 'state': 'Nevada', 'dep': 'KLAS (Las Vegas)', 'poi1': 'Barrage Hoover', 'poi2': 'Valley of Fire', 'arr': 'KTPH (Tonopah)'},
               '2026-08-17': {'no': 8, 'state': 'Colorado', 'dep': 'KASE (Aspen)', 'poi1': 'Pikes Peak', 'poi2': 'Royal Gorge Bridge', 'arr': 'KCOS (Colorado Springs)'},
-              '2026-08-19': {'no': 9, 'state': 'Alaska', 'dep': 'PANC (Anchorage)', 'poi1': 'Mont Denali', 'poi2': 'Glacier Knik', 'arr': 'PAWD (Girdwood)'},
+              '2026-08-19': {'no': 9, 'state': 'Alaska', 'dep': 'PANC (Anchorage)', 'poi1': 'Mont Denali', 'poi2': 'Glacier Knik', 'arr': 'PAWD (Seward)'},
               '2026-08-21': {'no': 10, 'state': 'Hawaï', 'dep': 'PHOG (Maui)', 'poi1': 'Cratère Haleakala', 'poi2': 'Diamond Head (Oahu)', 'arr': 'PHNL (Honolulu)'}
           }
 
